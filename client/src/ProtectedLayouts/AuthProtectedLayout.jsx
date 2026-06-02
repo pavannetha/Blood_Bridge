@@ -1,7 +1,10 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
-export default function AuthProtectedLayout() {
+export default function AuthProtectedLayout({ isAuthenticated }) {
+  if (isAuthenticated) {
+    return <Navigate to="/" replace />;
+  }
   return (
     <div>
       <Outlet />
