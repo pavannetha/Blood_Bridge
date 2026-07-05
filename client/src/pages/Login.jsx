@@ -1,8 +1,10 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { contextData } from "../components/ContextAPI";
 
 export default function Login() {
+  const { setIsAuthenticated } = useContext(contextData);
   const navigate = useNavigate();
   const [loginFormDetails, setLoginFormDetails] = useState({
     email: "",
@@ -23,6 +25,8 @@ export default function Login() {
         withCredentials: true,
       },
     );
+    // console.log(data, " data in login page");
+    setIsAuthenticated(true);
     navigate("/");
   }
   return (
@@ -59,6 +63,7 @@ export default function Login() {
           value="Submit"
         />
       </form>
+      <Link to="/signup">Signup</Link>
     </div>
   );
 }

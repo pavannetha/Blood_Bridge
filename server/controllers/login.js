@@ -34,7 +34,7 @@ export async function login(req, res) {
       sameSite: "lax",
       maxAge: 15 * 60 * 1000,
     });
-    return res.status(200).json({ message: "userLoggedIn" });
+    return res.status(200).json({ message: "userLoggedIn", token: token });
   } catch (err) {
     console.log(err.message);
   }
